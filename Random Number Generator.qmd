@@ -1,0 +1,31 @@
+---
+title: "Random Number Generator"
+format: pdf
+editor: visual
+---
+
+## Random Number Generator
+
+The following code generates a 13x60 matrix of random numbers. Each number is a sequence of three digits, with the first digit being 0. The code uses the `set.seed` function to ensure reproducibility. It then defines a function to generate a random sequence of three numbers beginning with 0. The function is used to fill the matrix with random sequences.The numbers are generated using the `sample` function, which selects a random number from a specified range.
+
+```{r}
+set.seed(123) # Set a seed for reproducibility
+
+# Function to generate a string with a sequence of three numbers beginning with 0
+generate_number_sequence <- function() {
+  paste0('0', sprintf('%02d', sample(0:99, 1)))
+}
+
+# Initialize the matrix
+random_matrix <- matrix("", nrow = 13, ncol = 60)
+
+# Fill the matrix with the random sequences
+for (row in 1:nrow(random_matrix)) {
+  for (col in 1:ncol(random_matrix)) {
+    random_matrix[row, col] <- generate_number_sequence()
+  }
+}
+
+# Print the matrix
+print(random_matrix)
+```
